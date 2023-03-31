@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace AppConfigEncryptor
@@ -16,50 +10,54 @@ namespace AppConfigEncryptor
         public AppConfigEncryptor()
         {
             InitializeComponent();
-
             cmbEncryptDecrypt.SelectedIndex = 0;
             cmbSectionName.SelectedIndex = 0;
         }
 
         private void BtnEncryptDecrypt_Click(object sender, EventArgs e)
         {
-            if (tbExecutableFile.Text == "")
+            if (string.IsNullOrWhiteSpace(tbExecutableFile.Text))
             {
-                MessageBox.Show("Please select the executable file.");
+                MessageBox.Show("Please select an executable file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else
-            {
-                SetConfigSectionEncryption();
-            }
+
+            EncryptOrDecryptConfigSection();
         }
 
-        private void SetConfigSectionEncryption()
+        private void EncryptOrDecryptConfigSection()
         {
             try
             {
                 Configuration config = ConfigurationManager.OpenExeConfiguration(tbExecutableFile.Text);
                 ConfigurationSection section = config.GetSection(cmbSectionName.Text);
 
+                if (section == null)
+                {
+                    MessageBox.Show($"The selected section '{cmbSectionName.Text}' does not exist in the configuration file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 if (cmbEncryptDecrypt.SelectedItem.Equals("Encrypt") && !section.SectionInformation.IsProtected)
                 {
                     section.SectionInformation.ProtectSection("DataProtectionConfigurationProvider");
                     config.Save();
-                    MessageBox.Show($"Encrypted successfully");
+                    MessageBox.Show("Encrypted successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else if (cmbEncryptDecrypt.SelectedItem.Equals("Decrypt") && section.SectionInformation.IsProtected)
                 {
                     section.SectionInformation.UnprotectSection();
                     config.Save();
-                    MessageBox.Show($"Decrypted successfully");
+                    MessageBox.Show("Decrypted successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show($"Please check if '{cmbSectionName.Text}' of '{tbExecutableFile.Text}.config' is ready to be '{cmbEncryptDecrypt.SelectedItem}ed'.");
+                    MessageBox.Show($"Please check if '{cmbSectionName.Text}' of '{tbExecutableFile.Text}.config' is ready to be '{cmbEncryptDecrypt.SelectedItem}ed'.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex}");
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

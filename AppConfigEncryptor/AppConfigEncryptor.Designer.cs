@@ -84,7 +84,7 @@
             this.btnEncryptDecrypt.Location = new System.Drawing.Point(31, 162);
             this.btnEncryptDecrypt.Name = "btnEncryptDecrypt";
             this.btnEncryptDecrypt.Size = new System.Drawing.Size(292, 23);
-            this.btnEncryptDecrypt.TabIndex = 6;
+            this.btnEncryptDecrypt.TabIndex = 3;
             this.btnEncryptDecrypt.UseVisualStyleBackColor = true;
             this.btnEncryptDecrypt.Click += new System.EventHandler(this.BtnEncryptDecrypt_Click);
             // 
@@ -95,13 +95,14 @@
             this.tbExecutableFile.ReadOnly = true;
             this.tbExecutableFile.Size = new System.Drawing.Size(159, 20);
             this.tbExecutableFile.TabIndex = 7;
+            this.tbExecutableFile.TabStop = false;
             // 
             // btnOpenExecutableFile
             // 
             this.btnOpenExecutableFile.Location = new System.Drawing.Point(295, 78);
             this.btnOpenExecutableFile.Name = "btnOpenExecutableFile";
             this.btnOpenExecutableFile.Size = new System.Drawing.Size(28, 23);
-            this.btnOpenExecutableFile.TabIndex = 8;
+            this.btnOpenExecutableFile.TabIndex = 1;
             this.btnOpenExecutableFile.Text = "...";
             this.btnOpenExecutableFile.UseVisualStyleBackColor = true;
             this.btnOpenExecutableFile.Click += new System.EventHandler(this.BtnOpenExecutableFile_Click);
@@ -116,7 +117,7 @@
             this.cmbSectionName.Location = new System.Drawing.Point(136, 118);
             this.cmbSectionName.Name = "cmbSectionName";
             this.cmbSectionName.Size = new System.Drawing.Size(187, 21);
-            this.cmbSectionName.TabIndex = 9;
+            this.cmbSectionName.TabIndex = 2;
             // 
             // AppConfigEncryptor
             // 
