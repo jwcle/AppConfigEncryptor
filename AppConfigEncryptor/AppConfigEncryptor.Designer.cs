@@ -132,6 +132,8 @@
             this.Controls.Add(this.lblExecutableFile);
             this.Controls.Add(this.lblEncryptDecrypt);
             this.Controls.Add(this.cmbEncryptDecrypt);
+            this.MaximumSize = new System.Drawing.Size(372, 247);
+            this.MinimumSize = new System.Drawing.Size(372, 247);
             this.Name = "AppConfigEncryptor";
             this.Text = "AppConfigEncryptor";
             this.ResumeLayout(false);
