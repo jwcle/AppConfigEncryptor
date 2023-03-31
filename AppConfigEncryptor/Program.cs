@@ -21,31 +21,28 @@ namespace AppConfigEncryptor
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new AppConfigCiphererForm(configCipherer));
             }
+            else if (args.Length == 3)
+            {
+                configCipherer.IsConsoleApplication = true;
+                configCipherer.ExecutableFilePath = args[1];
+                configCipherer.SectionName = args[2];
+
+                switch (args[0])
+                {
+                    case "Encrypt":
+                        configCipherer.EncryptConfigSection();
+                        break;
+                    case "Decrypt":
+                        configCipherer.DecryptConfigSection();
+                        break;
+                    default:
+                        Console.WriteLine($"Invalid command: {args[0]}");
+                        break;
+                }
+            }
             else
             {
-                if (args.Length == 3)
-                {
-                    configCipherer.IsConsoleApplication = true;
-                    configCipherer.ExecutableFilePath = args[1];
-                    configCipherer.SectionName = args[2];
-
-                    switch (args[0])
-                    {
-                        case "Encrypt":
-                            configCipherer.EncryptConfigSection();
-                            break;
-                        case "Decrypt":
-                            configCipherer.DecryptConfigSection();
-                            break;
-                        default:
-                            Console.WriteLine($"Invalid command: {args[0]}");
-                            break;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine($"Invalid command: command must be [Encrypt|Decrypt] <ExecutableFilePath> <SectionName>");
-                }
+                Console.WriteLine($"Invalid command: command must be [Encrypt|Decrypt] <ExecutableFilePath> <SectionName>");
             }
         }
     }
