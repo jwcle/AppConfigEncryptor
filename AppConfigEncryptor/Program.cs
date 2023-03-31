@@ -13,59 +13,38 @@ namespace AppConfigEncryptor
         [STAThread]
         static void Main(string[] args)
         {
+            AppConfigCipherer configCipherer = new AppConfigCipherer();
+
             if (args.Length == 0)
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new AppConfigEncryptor());
+                Application.Run(new AppConfigCiphererForm(configCipherer));
             }
             else
             {
-                try
+                if (args.Length == 3)
                 {
-                    Configuration config = ConfigurationManager.OpenExeConfiguration(args[1]);
-                    ConfigurationSection section = config.GetSection(args[2]);
+                    configCipherer.IsConsoleApplication = true;
+                    configCipherer.ExecutableFilePath = args[1];
+                    configCipherer.SectionName = args[2];
 
-                    if (section == null)
+                    switch (args[0])
                     {
-                        Console.WriteLine($"Error: The selected section '{args[2]}' does not exist in the configuration file.");
-                        return;
-                    }
-
-                    if (args[0] == "Encrypt")
-                    {
-                        if (!section.SectionInformation.IsProtected)
-                        {
-                            section.SectionInformation.ProtectSection("DataProtectionConfigurationProvider");
-                            config.Save();
-                            Console.WriteLine("Encrypted successfully");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Section is already encrypted");
-                        }
-                    }
-                    else if (args[0] == "Decrypt")
-                    {
-                        if (section.SectionInformation.IsProtected)
-                        {
-                            section.SectionInformation.UnprotectSection();
-                            config.Save();
-                            Console.WriteLine("Decrypted successfully");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Section is already decrypted");
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Invalid command: {args[0]}");
+                        case "Encrypt":
+                            configCipherer.EncryptConfigSection();
+                            break;
+                        case "Decrypt":
+                            configCipherer.DecryptConfigSection();
+                            break;
+                        default:
+                            Console.WriteLine($"Invalid command: {args[0]}");
+                            break;
                     }
                 }
-                catch (Exception ex)
+                else
                 {
-                    Console.WriteLine($"Error: {ex.Message}");
+                    Console.WriteLine($"Invalid command: command must be [Encrypt|Decrypt] <ExecutableFilePath> <SectionName>");
                 }
             }
         }

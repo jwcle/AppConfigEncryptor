@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppConfigEncryptor", "AppConfigEncryptor\AppConfigEncryptor.csproj", "{CAD754E6-C1B1-4E00-9951-B5616A03ACD7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppConfigCipherMachine", "AppConfigEncryptor\AppConfigCipherMachine.csproj", "{CAD754E6-C1B1-4E00-9951-B5616A03ACD7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
