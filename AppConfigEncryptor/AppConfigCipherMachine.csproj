@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{CAD754E6-C1B1-4E00-9951-B5616A03ACD7}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>AppConfigEncryptor</RootNamespace>
-    <AssemblyName>AppConfigEncryptor</AssemblyName>
+    <RootNamespace>AppConfigCipherer</RootNamespace>
+    <AssemblyName>AppConfigCipherer</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -70,6 +70,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

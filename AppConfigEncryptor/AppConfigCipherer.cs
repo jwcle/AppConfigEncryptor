@@ -3,79 +3,63 @@ using System.Configuration;
 using System.Windows.Forms;
 using static System.Collections.Specialized.BitVector32;
 
-namespace AppConfigEncryptor
+namespace AppConfigCipherer
 {
     public class AppConfigCipherer
     {
-        public bool IsConsoleApplication { get; set; }
-        public string ExecutableFilePath { get; set; }
-        public string SectionName { get; set; }
-
-        public void EncryptConfigSection()
+        public string EncryptConfigSection(string executableFilePath, string sectionName)
         {
-            var configuration = ConfigurationManager.OpenExeConfiguration(ExecutableFilePath);
-            var section = GetConfigurationSection(configuration);
-
             try
             {
+                var configuration = ConfigurationManager.OpenExeConfiguration(executableFilePath);
+                var section = GetConfigurationSection(configuration, sectionName);
+
                 if (!section.SectionInformation.IsProtected)
                 {
                     section.SectionInformation.ProtectSection("DataProtectionConfigurationProvider");
                     configuration.Save();
-                    ShowMessage("Encrypted successfully.");
+                    return "Encrypted successfully.";
                 }
                 else
                 {
-                    ShowMessage("Error: Section is already encrypted.");
+                    return "Error: Section is already encrypted.";
                 }
             }
             catch (Exception ex)
             {
-                ShowMessage($"Error: {ex.Message}");
+                return $"Error: {ex.Message}";
             }
         }
 
-        public void DecryptConfigSection() 
+        public string DecryptConfigSection(string executableFilePath, string sectionName) 
         {
-            var configuration = ConfigurationManager.OpenExeConfiguration(ExecutableFilePath);
-            var section = GetConfigurationSection(configuration);
-
             try
             {
+                var configuration = ConfigurationManager.OpenExeConfiguration(executableFilePath);
+                var section = GetConfigurationSection(configuration, sectionName);
+
                 if (section.SectionInformation.IsProtected)
                 {
                     section.SectionInformation.UnprotectSection();
                     configuration.Save();
-                    ShowMessage("Decrypted successfully.");
+                    return "Decrypted successfully.";
                 }
                 else
                 {
-                    ShowMessage("Error: Section is already decrypted.");
+                    return "Error: Section is already decrypted.";
                 }
             }
             catch (Exception ex)
             {
-                ShowMessage($"Error: {ex.Message}");
+                return $"Error: {ex.Message}";
             }
         }
 
-        private ConfigurationSection GetConfigurationSection(Configuration configuration)
+        private ConfigurationSection GetConfigurationSection(Configuration configuration, string sectionName)
         {
-            ConfigurationSection section = configuration.GetSection(SectionName);
+            ConfigurationSection section = configuration.GetSection(sectionName);
 
-            return section ?? throw new ArgumentException($"The selected section '{SectionName}' does not exist in the configuration file.");
-        }
-
-        public void ShowMessage(string message)
-        {
-            if (IsConsoleApplication)
-            {
-                Console.WriteLine(message);
-            }
-            else
-            {
-                MessageBox.Show(message);
-            }
+            return section ?? throw new ArgumentException($"The selected section '{sectionName}' does not exist in the configuration file.");
         }
     }
 }

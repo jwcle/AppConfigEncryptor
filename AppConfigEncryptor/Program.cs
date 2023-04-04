@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Collections.Specialized.BitVector32;
 
-namespace AppConfigEncryptor
+namespace AppConfigCipherer
 {
     internal static class Program
     {
@@ -23,20 +23,16 @@ namespace AppConfigEncryptor
             }
             else if (args.Length == 3)
             {
-                configCipherer.IsConsoleApplication = true;
-                configCipherer.ExecutableFilePath = args[1];
-                configCipherer.SectionName = args[2];
-
                 switch (args[0])
                 {
                     case "Encrypt":
-                        configCipherer.EncryptConfigSection();
+                        Console.WriteLine(configCipherer.EncryptConfigSection(args[1], args[2]));
                         break;
                     case "Decrypt":
-                        configCipherer.DecryptConfigSection();
+                        Console.WriteLine(configCipherer.DecryptConfigSection(args[1], args[2]));
                         break;
                     default:
-                        Console.WriteLine($"Invalid command: {args[0]}");
+                        Console.WriteLine($"Invalid command: '{args[0]}'");
                         break;
                 }
             }

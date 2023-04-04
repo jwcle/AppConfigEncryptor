@@ -1,4 +1,4 @@
-﻿namespace AppConfigEncryptor
+﻿namespace AppConfigCipherer
 {
     partial class AppConfigCiphererForm
     {
@@ -119,7 +119,7 @@
             this.cmbSectionName.Size = new System.Drawing.Size(187, 21);
             this.cmbSectionName.TabIndex = 2;
             // 
-            // AppConfigCipherMachine
+            // AppConfigCiphererForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -135,8 +135,8 @@
             this.Controls.Add(this.cmbEncryptDecrypt);
             this.MaximumSize = new System.Drawing.Size(372, 247);
             this.MinimumSize = new System.Drawing.Size(372, 247);
-            this.Name = "AppConfigCipherMachine";
-            this.Text = "AppConfigCipherMachine";
+            this.Name = "AppConfigCiphererForm";
+            this.Text = "AppConfigCipherer";
             this.ResumeLayout(false);
             this.PerformLayout();
 

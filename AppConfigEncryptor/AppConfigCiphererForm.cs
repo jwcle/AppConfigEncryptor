@@ -3,7 +3,7 @@ using System.Configuration;
 using System.IO;
 using System.Windows.Forms;
 
-namespace AppConfigEncryptor
+namespace AppConfigCipherer
 {
     public partial class AppConfigCiphererForm : Form
     {
@@ -14,7 +14,6 @@ namespace AppConfigEncryptor
             InitializeComponent();
 
             _configCipherer = configCipherer;
-            configCipherer.IsConsoleApplication = false;
 
             cmbEncryptDecrypt.SelectedIndex = 0;
             cmbSectionName.SelectedIndex = 0;
@@ -28,16 +27,13 @@ namespace AppConfigEncryptor
                 return;
             }
 
-            _configCipherer.ExecutableFilePath = tbExecutableFile.Text;
-            _configCipherer.SectionName = cmbSectionName.Text;
-
             if (cmbEncryptDecrypt.SelectedItem.Equals("Encrypt"))
             {
-                _configCipherer.EncryptConfigSection();
+                MessageBox.Show(_configCipherer.EncryptConfigSection(tbExecutableFile.Text, cmbSectionName.Text));
             }
             else if (cmbEncryptDecrypt.SelectedItem.Equals("Decrypt"))
             {
-                _configCipherer.DecryptConfigSection();
+                MessageBox.Show(_configCipherer.DecryptConfigSection(tbExecutableFile.Text, cmbSectionName.Text));
             }
         }
 
