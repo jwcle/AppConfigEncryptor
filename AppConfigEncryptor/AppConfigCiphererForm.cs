@@ -15,31 +15,31 @@ namespace AppConfigCipherer
 
             _configCipherer = configCipherer;
 
-            cmbEncryptDecrypt.SelectedIndex = 0;
+            cmbCipher.SelectedIndex = 0;
             cmbSectionName.SelectedIndex = 0;
         }
 
         private void BtnEncryptDecrypt_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(tbExecutableFile.Text))
+            if (string.IsNullOrWhiteSpace(tbExecutableFilePath.Text))
             {
                 MessageBox.Show("Please select an executable file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (cmbEncryptDecrypt.SelectedItem.Equals("Encrypt"))
+            if (cmbCipher.SelectedItem.Equals("Encrypt"))
             {
-                MessageBox.Show(_configCipherer.EncryptConfigSection(tbExecutableFile.Text, cmbSectionName.Text));
+                MessageBox.Show(_configCipherer.EncryptConfigSection(tbExecutableFilePath.Text, cmbSectionName.Text));
             }
-            else if (cmbEncryptDecrypt.SelectedItem.Equals("Decrypt"))
+            else if (cmbCipher.SelectedItem.Equals("Decrypt"))
             {
-                MessageBox.Show(_configCipherer.DecryptConfigSection(tbExecutableFile.Text, cmbSectionName.Text));
+                MessageBox.Show(_configCipherer.DecryptConfigSection(tbExecutableFilePath.Text, cmbSectionName.Text));
             }
         }
 
         private void CmbEncryptDecrypt_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnEncryptDecrypt.Text = cmbEncryptDecrypt.Text;
+            btnCipher.Text = cmbCipher.Text;
         }
 
         private void BtnOpenExecutableFile_Click(object sender, EventArgs e)
@@ -53,7 +53,7 @@ namespace AppConfigCipherer
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    tbExecutableFile.Text = openFileDialog.FileName;
+                    tbExecutableFilePath.Text = openFileDialog.FileName;
                 }
             }
         }
