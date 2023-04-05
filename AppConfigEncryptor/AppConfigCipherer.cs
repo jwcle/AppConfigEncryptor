@@ -12,7 +12,12 @@ namespace AppConfigCipherer
             try
             {
                 var configuration = ConfigurationManager.OpenExeConfiguration(executableFilePath);
-                var section = GetConfigurationSection(configuration, sectionName);
+                var section = configuration.GetSection(sectionName);
+
+                if (section == null)
+                {
+                    return $"The selected section '{sectionName}' does not exist in the configuration file.";
+                }
 
                 if (!section.SectionInformation.IsProtected)
                 {
@@ -36,7 +41,12 @@ namespace AppConfigCipherer
             try
             {
                 var configuration = ConfigurationManager.OpenExeConfiguration(executableFilePath);
-                var section = GetConfigurationSection(configuration, sectionName);
+                var section = configuration.GetSection(sectionName);
+
+                if (section == null)
+                {
+                    return $"The selected section '{sectionName}' does not exist in the configuration file.";
+                }
 
                 if (section.SectionInformation.IsProtected)
                 {
@@ -53,13 +63,6 @@ namespace AppConfigCipherer
             {
                 return $"Error: {ex.Message}";
             }
-        }
-
-        private ConfigurationSection GetConfigurationSection(Configuration configuration, string sectionName)
-        {
-            ConfigurationSection section = configuration.GetSection(sectionName);
-
-            return section ?? throw new ArgumentException($"The selected section '{sectionName}' does not exist in the configuration file.");
         }
     }
 }
