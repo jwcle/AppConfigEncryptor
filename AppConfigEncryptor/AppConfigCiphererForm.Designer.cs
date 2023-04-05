@@ -88,6 +88,12 @@
             this.btnCipher.UseVisualStyleBackColor = true;
             this.btnCipher.Click += new System.EventHandler(this.BtnEncryptDecrypt_Click);
             // 
+            // openFileDialogExecutableFile
+            // 
+            this.openFileDialogExecutableFile.Filter = "Exe Files (.exe)|*.exe|All Files (*.*)|*.*";
+            this.openFileDialogExecutableFile.InitialDirectory = "C:\\";
+            this.openFileDialogExecutableFile.RestoreDirectory = true;
+            // 
             // tbExecutableFilePath
             // 
             this.tbExecutableFilePath.Location = new System.Drawing.Point(136, 79);

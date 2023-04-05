@@ -44,17 +44,9 @@ namespace AppConfigCipherer
 
         private void BtnOpenExecutableFile_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog openFileDialog = openFileDialogExecutableFile)
+            if (openFileDialogExecutableFile.ShowDialog() == DialogResult.OK)
             {
-                openFileDialog.InitialDirectory = @"C:\";
-                openFileDialog.Filter = "Exe Files (.exe)|*.exe|All Files (*.*)|*.*";
-                openFileDialog.FilterIndex = 1;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    tbExecutableFilePath.Text = openFileDialog.FileName;
-                }
+                tbExecutableFilePath.Text = openFileDialogExecutableFile.FileName;
             }
         }
     }
