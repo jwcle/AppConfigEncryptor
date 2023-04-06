@@ -2,16 +2,22 @@
 using System.Configuration;
 using System.Windows.Forms;
 using static System.Collections.Specialized.BitVector32;
+using System.IO;
 
 namespace AppConfigCipherer
 {
     public class AppConfigCipherer
     {
-        public string EncryptConfigSection(string executableFilePath, string sectionName)
+        public string EncryptConfigSection(string filePath, string sectionName)
         {
+            if (!File.Exists(filePath+".config"))
+            {
+                return $"{filePath}.config does not exist in the file path.";
+            }
+
             try
             {
-                var configuration = ConfigurationManager.OpenExeConfiguration(executableFilePath);
+                var configuration = ConfigurationManager.OpenExeConfiguration(filePath);
                 var section = configuration.GetSection(sectionName);
 
                 if (section == null)
@@ -36,11 +42,16 @@ namespace AppConfigCipherer
             }
         }
 
-        public string DecryptConfigSection(string executableFilePath, string sectionName) 
+        public string DecryptConfigSection(string filePath, string sectionName) 
         {
+            if (!File.Exists(filePath + ".config"))
+            {
+                return $"{filePath}.config does not exist in the file directory.";
+            }
+
             try
             {
-                var configuration = ConfigurationManager.OpenExeConfiguration(executableFilePath);
+                var configuration = ConfigurationManager.OpenExeConfiguration(filePath);
                 var section = configuration.GetSection(sectionName);
 
                 if (section == null)

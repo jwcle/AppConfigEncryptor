@@ -30,12 +30,12 @@
         {
             this.cmbCipher = new System.Windows.Forms.ComboBox();
             this.lblCipher = new System.Windows.Forms.Label();
-            this.lblExecutableFile = new System.Windows.Forms.Label();
+            this.lblFile = new System.Windows.Forms.Label();
             this.lblSectionName = new System.Windows.Forms.Label();
             this.btnCipher = new System.Windows.Forms.Button();
-            this.openFileDialogExecutableFile = new System.Windows.Forms.OpenFileDialog();
-            this.tbExecutableFilePath = new System.Windows.Forms.TextBox();
-            this.btnOpenExecutableFile = new System.Windows.Forms.Button();
+            this.openFileDialogFile = new System.Windows.Forms.OpenFileDialog();
+            this.tbFilePath = new System.Windows.Forms.TextBox();
+            this.btnOpenFile = new System.Windows.Forms.Button();
             this.cmbSectionName = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
@@ -61,14 +61,14 @@
             this.lblCipher.TabIndex = 1;
             this.lblCipher.Text = "Encrypt/Decrypt";
             // 
-            // lblExecutableFile
+            // lblFile
             // 
-            this.lblExecutableFile.AutoSize = true;
-            this.lblExecutableFile.Location = new System.Drawing.Point(28, 82);
-            this.lblExecutableFile.Name = "lblExecutableFile";
-            this.lblExecutableFile.Size = new System.Drawing.Size(79, 13);
-            this.lblExecutableFile.TabIndex = 2;
-            this.lblExecutableFile.Text = "Executable File";
+            this.lblFile.AutoSize = true;
+            this.lblFile.Location = new System.Drawing.Point(28, 82);
+            this.lblFile.Name = "lblFile";
+            this.lblFile.Size = new System.Drawing.Size(48, 13);
+            this.lblFile.TabIndex = 2;
+            this.lblFile.Text = "File Path";
             // 
             // lblSectionName
             // 
@@ -88,30 +88,30 @@
             this.btnCipher.UseVisualStyleBackColor = true;
             this.btnCipher.Click += new System.EventHandler(this.BtnEncryptDecrypt_Click);
             // 
-            // openFileDialogExecutableFile
+            // openFileDialogFile
             // 
-            this.openFileDialogExecutableFile.Filter = "Exe Files (.exe)|*.exe|All Files (*.*)|*.*";
-            this.openFileDialogExecutableFile.InitialDirectory = "C:\\";
-            this.openFileDialogExecutableFile.RestoreDirectory = true;
+            this.openFileDialogFile.Filter = "Exe Files (.exe)|*.exe|DLL Files (.dll)|*.dll|All Files (*.*)|*.*";
+            this.openFileDialogFile.InitialDirectory = "C:\\";
+            this.openFileDialogFile.RestoreDirectory = true;
             // 
-            // tbExecutableFilePath
+            // tbFilePath
             // 
-            this.tbExecutableFilePath.Location = new System.Drawing.Point(136, 79);
-            this.tbExecutableFilePath.Name = "tbExecutableFilePath";
-            this.tbExecutableFilePath.ReadOnly = true;
-            this.tbExecutableFilePath.Size = new System.Drawing.Size(159, 20);
-            this.tbExecutableFilePath.TabIndex = 7;
-            this.tbExecutableFilePath.TabStop = false;
+            this.tbFilePath.Location = new System.Drawing.Point(136, 79);
+            this.tbFilePath.Name = "tbFilePath";
+            this.tbFilePath.ReadOnly = true;
+            this.tbFilePath.Size = new System.Drawing.Size(159, 20);
+            this.tbFilePath.TabIndex = 7;
+            this.tbFilePath.TabStop = false;
             // 
-            // btnOpenExecutableFile
+            // btnOpenFile
             // 
-            this.btnOpenExecutableFile.Location = new System.Drawing.Point(295, 78);
-            this.btnOpenExecutableFile.Name = "btnOpenExecutableFile";
-            this.btnOpenExecutableFile.Size = new System.Drawing.Size(28, 23);
-            this.btnOpenExecutableFile.TabIndex = 1;
-            this.btnOpenExecutableFile.Text = "...";
-            this.btnOpenExecutableFile.UseVisualStyleBackColor = true;
-            this.btnOpenExecutableFile.Click += new System.EventHandler(this.BtnOpenExecutableFile_Click);
+            this.btnOpenFile.Location = new System.Drawing.Point(295, 78);
+            this.btnOpenFile.Name = "btnOpenFile";
+            this.btnOpenFile.Size = new System.Drawing.Size(28, 23);
+            this.btnOpenFile.TabIndex = 1;
+            this.btnOpenFile.Text = "...";
+            this.btnOpenFile.UseVisualStyleBackColor = true;
+            this.btnOpenFile.Click += new System.EventHandler(this.BtnOpenFile_Click);
             // 
             // cmbSectionName
             // 
@@ -132,11 +132,11 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(356, 208);
             this.Controls.Add(this.cmbSectionName);
-            this.Controls.Add(this.btnOpenExecutableFile);
-            this.Controls.Add(this.tbExecutableFilePath);
+            this.Controls.Add(this.btnOpenFile);
+            this.Controls.Add(this.tbFilePath);
             this.Controls.Add(this.btnCipher);
             this.Controls.Add(this.lblSectionName);
-            this.Controls.Add(this.lblExecutableFile);
+            this.Controls.Add(this.lblFile);
             this.Controls.Add(this.lblCipher);
             this.Controls.Add(this.cmbCipher);
             this.MaximumSize = new System.Drawing.Size(372, 247);
@@ -152,12 +152,12 @@
 
         private System.Windows.Forms.ComboBox cmbCipher;
         private System.Windows.Forms.Label lblCipher;
-        private System.Windows.Forms.Label lblExecutableFile;
+        private System.Windows.Forms.Label lblFile;
         private System.Windows.Forms.Label lblSectionName;
         private System.Windows.Forms.Button btnCipher;
-        private System.Windows.Forms.OpenFileDialog openFileDialogExecutableFile;
-        private System.Windows.Forms.TextBox tbExecutableFilePath;
-        private System.Windows.Forms.Button btnOpenExecutableFile;
+        private System.Windows.Forms.OpenFileDialog openFileDialogFile;
+        private System.Windows.Forms.TextBox tbFilePath;
+        private System.Windows.Forms.Button btnOpenFile;
         private System.Windows.Forms.ComboBox cmbSectionName;
     }
 }

@@ -21,19 +21,19 @@ namespace AppConfigCipherer
 
         private void BtnEncryptDecrypt_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(tbExecutableFilePath.Text))
+            if (string.IsNullOrWhiteSpace(tbFilePath.Text))
             {
-                MessageBox.Show("Please select an executable file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please select a file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (cmbCipher.SelectedItem.Equals("Encrypt"))
             {
-                MessageBox.Show(_configCipherer.EncryptConfigSection(tbExecutableFilePath.Text, cmbSectionName.Text));
+                MessageBox.Show(_configCipherer.EncryptConfigSection(tbFilePath.Text, cmbSectionName.Text));
             }
             else if (cmbCipher.SelectedItem.Equals("Decrypt"))
             {
-                MessageBox.Show(_configCipherer.DecryptConfigSection(tbExecutableFilePath.Text, cmbSectionName.Text));
+                MessageBox.Show(_configCipherer.DecryptConfigSection(tbFilePath.Text, cmbSectionName.Text));
             }
         }
 
@@ -42,11 +42,11 @@ namespace AppConfigCipherer
             btnCipher.Text = cmbCipher.Text;
         }
 
-        private void BtnOpenExecutableFile_Click(object sender, EventArgs e)
+        private void BtnOpenFile_Click(object sender, EventArgs e)
         {
-            if (openFileDialogExecutableFile.ShowDialog() == DialogResult.OK)
+            if (openFileDialogFile.ShowDialog() == DialogResult.OK)
             {
-                tbExecutableFilePath.Text = openFileDialogExecutableFile.FileName;
+                tbFilePath.Text = openFileDialogFile.FileName;
             }
         }
     }

@@ -26,10 +26,12 @@ namespace AppConfigCipherer
                 switch (args[0])
                 {
                     case "Encrypt":
-                        Console.WriteLine(configCipherer.EncryptConfigSection(args[1], args[2]));
+                        string encryptMessage = configCipherer.EncryptConfigSection(args[1], args[2]);
+                        Console.WriteLine(encryptMessage);
                         break;
                     case "Decrypt":
-                        Console.WriteLine(configCipherer.DecryptConfigSection(args[1], args[2]));
+                        string decryptMessage = configCipherer.DecryptConfigSection(args[1], args[2]);
+                        Console.WriteLine(decryptMessage);
                         break;
                     default:
                         Console.WriteLine($"Invalid command: '{args[0]}'");
@@ -38,7 +40,7 @@ namespace AppConfigCipherer
             }
             else
             {
-                Console.WriteLine($"Invalid command: command must be [Encrypt|Decrypt] <ExecutableFilePath> <SectionName>");
+                Console.WriteLine($"Invalid command: command must be [Encrypt|Decrypt] <FilePath> <SectionName>");
             }
         }
     }
