@@ -10,7 +10,7 @@ namespace AppConfigCipherer
     {
         public string EncryptConfigSection(string filePath, string sectionName)
         {
-            if (!File.Exists(filePath+".config"))
+            if (!File.Exists(filePath + ".config"))
             {
                 return $"{filePath}.config does not exist in the file path.";
             }
